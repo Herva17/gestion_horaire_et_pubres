@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4e73df" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Dashboard Médical</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="logo">
+          <i class="fas fa-hospital"></i>
+          <span>MediDash</span>
+        </div>
+        <ul class="nav-links">
+          <li class="active">
+            <a href="#dashboard">
+              <i class="fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#reception">
+              <i class="fas fa-user-plus"></i>
+              <span>Réception</span>
+            </a>
+          </li>
+          <li>
+            <a href="#laboratoire">
+              <i class="fas fa-flask"></i>
+              <span>Laboratoire</span>
+            </a>
+          </li>
+          <li>
+            <a href="#prescriptions">
+              <i class="fas fa-prescription"></i>
+              <span>Prescriptions</span>
+            </a>
+          </li>
+          <li>
+            <a href="#suivi">
+              <i class="fas fa-user-md"></i>
+              <span>Suivi</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header>
+          <div class="header-content">
+            <button class="menu-toggle">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="search-bar">
+              <input type="text" placeholder="Rechercher un patient..." />
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="user-info">
+              <i class="fas fa-bell"></i>
+              <div class="user-profile">
+                <img src="https://via.placeholder.com/40" alt="Profile" />
+                <span>Dr. Smith</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="dashboard-content">
+          <!-- Statistics Cards -->
+          <div class="stats-cards">
+            <div class="card">
+              <div class="card-inner">
+                <i class="fas fa-users"></i>
+                <div class="card-info">
+                  <h3>Patients</h3>
+                  <h2>150</h2>
+                  <p>+12% cette semaine</p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-inner">
+                <i class="fas fa-flask"></i>
+                <div class="card-info">
+                  <h3>Tests en cours</h3>
+                  <h2>45</h2>
+                  <p>8 en attente</p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-inner">
+                <i class="fas fa-prescription"></i>
+                <div class="card-info">
+                  <h3>Prescriptions</h3>
+                  <h2>89</h2>
+                  <p>Aujourd'hui</p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-inner">
+                <i class="fas fa-calendar-check"></i>
+                <div class="card-info">
+                  <h3>Rendez-vous</h3>
+                  <h2>32</h2>
+                  <p>Cette semaine</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Activities and Patients List -->
+          <div class="dashboard-grid">
+            <div class="recent-activities">
+              <h2>Activités Récentes</h2>
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fas fa-user-plus"></i>
+                  </div>
+                  <div class="activity-details">
+                    <h4>Nouveau patient</h4>
+                    <p>Marie Dupont - Consultation générale</p>
+                    <small>Il y a 10 minutes</small>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fas fa-flask"></i>
+                  </div>
+                  <div class="activity-details">
+                    <h4>Résultats laboratoire</h4>
+                    <p>Jean Martin - Analyse sanguine</p>
+                    <small>Il y a 25 minutes</small>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fas fa-prescription"></i>
+                  </div>
+                  <div class="activity-details">
+                    <h4>Prescription émise</h4>
+                    <p>Sophie Bernard - Traitement mensuel</p>
+                    <small>Il y a 1 heure</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="patients-list">
+              <h2>Patients du Jour</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Patient</th>
+                    <th>Service</th>
+                    <th>Statut</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="patient-info">
+                        <img
+                          src="https://via.placeholder.com/30"
+                          alt="Patient"
+                        />
+                        <span>Pierre Martin</span>
+                      </div>
+                    </td>
+                    <td>Consultation</td>
+                    <td><span class="status waiting">En attente</span></td>
+                    <td>
+                      <button class="action-btn">Voir détails</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="patient-info">
+                        <img
+                          src="https://via.placeholder.com/30"
+                          alt="Patient"
+                        />
+                        <span>Marie Dubois</span>
+                      </div>
+                    </td>
+                    <td>Laboratoire</td>
+                    <td><span class="status in-progress">En cours</span></td>
+                    <td>
+                      <button class="action-btn">Voir détails</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="patient-info">
+                        <img
+                          src="https://via.placeholder.com/30"
+                          alt="Patient"
+                        />
+                        <span>Lucas Bernard</span>
+                      </div>
+                    </td>
+                    <td>Suivi</td>
+                    <td><span class="status completed">Terminé</span></td>
+                    <td>
+                      <button class="action-btn">Voir détails</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </body>
+</html>
