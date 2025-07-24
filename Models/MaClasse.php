@@ -321,7 +321,7 @@ class Horaire {
     }
 
      public function createDisponibiliteEnseignant(string $jour, string $heure_debut, string $heure_fin, int $id_enseignant): bool {
-        $sql = "INSERT INTO disponibilite_enseignant (jour, heure_debut, heure_fin, id_enseignant) 
+        $sql = "INSERT INTO disponibiliteenseignant (jour, heure_debut, heure_fin, id_enseignant) 
                 VALUES (:jour, :heure_debut, :heure_fin, :id_enseignant)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
@@ -332,74 +332,46 @@ class Horaire {
         ]);
     }
 
-    public function getDisponibilitesEnseignant(int $id_enseignant): array {
-        $sql = "SELECT * FROM disponibilite_enseignant 
-                WHERE id_enseignant = :id_enseignant
-                ORDER BY jour, heure_debut";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([':id_enseignant' => $id_enseignant]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    public function getDisponibilitesByEnseignant(int $id_enseignant): array {
+    $sql = "SELECT * FROM disponibiliteenseignant WHERE id_enseignant = :id_enseignant ORDER BY jour, heure_debut";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([':id_enseignant' => $id_enseignant]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
-    public function getAllDisponibilites(): array {
-        $sql = "SELECT d.*, e.nom as enseignant_nom, e.prenom as enseignant_prenom
-                FROM disponibilite_enseignant d
-                JOIN enseignant e ON d.id_enseignant = e.id
-                ORDER BY e.nom, e.prenom, d.jour, d.heure_debut";
-        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    }
+public function updateDisponibilite(int $id, string $jour, string $heure_debut, string $heure_fin): bool {
+    $sql = "UPDATE disponibiliteenseignant 
+            SET jour = :jour, heure_debut = :heure_debut, heure_fin = :heure_fin 
+            WHERE id = :id";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([
+        ':id' => $id,
+        ':jour' => $jour,
+        ':heure_debut' => $heure_debut,
+        ':heure_fin' => $heure_fin
+    ]);
+}
 
-    public function getDisponibiliteById(int $id): ?array {
-        $sql = "SELECT d.*, e.nom as enseignant_nom, e.prenom as enseignant_prenom
-                FROM disponibilite_enseignant d
-                JOIN enseignant e ON d.id_enseignant = e.id
-                WHERE d.id = :id";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([':id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
-    }
+public function deleteDisponibilite(int $id): bool {
+    $sql = "DELETE FROM disponibiliteenseignant WHERE id = :id";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([':id' => $id]);
+}
 
-    public function updateDisponibiliteEnseignant(int $id, string $jour, string $heure_debut, string $heure_fin, int $id_enseignant): bool {
-        $sql = "UPDATE disponibilite_enseignant SET 
-                jour = :jour, 
-                heure_debut = :heure_debut, 
-                heure_fin = :heure_fin, 
-                id_enseignant = :id_enseignant 
-                WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([
-            ':id' => $id,
-            ':jour' => $jour,
-            ':heure_debut' => $heure_debut,
-            ':heure_fin' => $heure_fin,
-            ':id_enseignant' => $id_enseignant
-        ]);
-    }
-
-    public function deleteDisponibiliteEnseignant(int $id): bool {
-        $sql = "DELETE FROM disponibilite_enseignant WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([':id' => $id]);
-    }
-
-    // Méthode pour vérifier si un enseignant est disponible à un créneau donné
-    public function isEnseignantDisponible(int $id_enseignant, string $jour, string $heure_debut, string $heure_fin): bool {
-        $sql = "SELECT COUNT(*) FROM disponibilite_enseignant 
-                WHERE id_enseignant = :id_enseignant 
-                AND jour = :jour
-                AND heure_debut <= :heure_debut 
-                AND heure_fin >= :heure_fin";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([
-            ':id_enseignant' => $id_enseignant,
-            ':jour' => $jour,
-            ':heure_debut' => $heure_debut,
-            ':heure_fin' => $heure_fin
-        ]);
-        return $stmt->fetchColumn() > 0;
-    }
-
-
+public function checkDisponibilite(int $id_enseignant, string $jour, string $heure): bool {
+    $sql = "SELECT COUNT(*) FROM disponibiliteenseignant 
+            WHERE id_enseignant = :id_enseignant 
+            AND jour = :jour 
+            AND heure_debut <= :heure 
+            AND heure_fin >= :heure";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([
+        ':id_enseignant' => $id_enseignant,
+        ':jour' => $jour,
+        ':heure' => $heure
+    ]);
+    return $stmt->fetchColumn() > 0;
+}
     // ==================== UTILITAIRES ====================
     public function beginTransaction(): bool {
         return $this->pdo->beginTransaction();
