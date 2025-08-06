@@ -697,67 +697,158 @@ tr:hover {
         padding: 8px 10px;
     }
 }
+/* Style pour les sous-menus */
+.sub-menu {
+    display: none;
+    padding-left: 20px;
+    background-color: #2c3e50;
+}
 
+.nav-links li:hover .sub-menu {
+    display: block;
+}
+
+.sub-menu li {
+    padding: 8px 0;
+}
+
+.sub-menu a {
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+}
+
+/* Style pour le header */
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    margin-right: 5px;
+}
 
         
     </style>
 </head>
 <body>
-    
     <div class="container">
         <!-- Sidebar -->
         <nav class="sidebar">
             <div class="logo">
                 <i class="fas fa-university"></i>
-                <span>ISC Horaires</span>
+                <span>ADMIN</span>
             </div>
             <ul class="nav-links">
+                <!-- Tableau de bord -->
                 <li class="active">
                     <a href="Dashboard.php">
                         <i class="fas fa-home"></i>
                         <span>Tableau de bord</span>
                     </a>
                 </li>
+                
+                <!-- Gestion Horaire -->
                 <li>
                     <a href="Horaire.php">
                         <i class="fas fa-calendar-alt"></i>
                         <span>Gestion Horaire</span>
                     </a>
+                    <ul class="sub-menu">
+                        <li><a href="Horaire.php"><i class="fas fa-clock"></i> Horaire général</a></li>
+                        <li><a href="Horaire_section.php"><i class="fas fa-calendar-week"></i> Horaire par section</a></li>
+                    </ul>
                 </li>
+                
+                <!-- Gestion Sections -->
                 <li>
                     <a href="departement.php">
                         <i class="fas fa-door-open"></i>
                         <span>Gestion Sections</span>
                     </a>
+                    <ul class="sub-menu">
+                        <li><a href="departement.php"><i class="fas fa-building"></i> Sections</a></li>
+                        <li><a href="Promotion.php"><i class="fas fa-users"></i> Promotions</a></li>
+                    </ul>
                 </li>
+                
+                <!-- Gestion Utilisateurs -->
                 <li>
-                    <a href="Enseignants.php">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <span> Gestion Professeurs</span>
+                    <a href="#">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Gestion Utilisateurs</span>
                     </a>
+                    <ul class="sub-menu">
+                        <li><a href="Enseignants.php"><i class="fas fa-chalkboard-teacher"></i>Nos Users</a></li>
+
+                    </ul>
                 </li>
+                
+                <!-- Gestion Cours -->
                 <li>
                     <a href="Cours.php">
                         <i class="fas fa-graduation-cap"></i>
                         <span>Gestion Cours</span>
                     </a>
+                    <ul class="sub-menu">
+                        <li><a href="Cours.php"><i class="fas fa-book"></i> Cours</a></li>
+                        <li><a href="TypeCours.php"><i class="fas fa-tags"></i> Types de cours</a></li>
+                        <li><a href="Salles.php"><i class="fas fa-door-closed"></i> Salles</a></li>
+                    </ul>
                 </li>
+                
+                <!-- Gestion Résultats -->
                 <li>
-                    <a href="#parametres">
+                    <a href="#">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Gestion Résultats</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="Resultats.php"><i class="fas fa-poll"></i> Résultats</a></li>
+                        <li><a href="ResultatsSection.php"><i class="fas fa-poll-h"></i> Résultats par section</a></li>
+                    </ul>
+                </li>
+                
+                <!-- Rapports -->
+                <li>
+                    <a href="#">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Rapports</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="RapportHoraire.php"><i class="fas fa-calendar-check"></i> Horaire par section</a></li>
+                        <li><a href="RapportResultat.php"><i class="fas fa-file-signature"></i> Résultat par section</a></li>
+                    </ul>
+                </li>
+                
+                <!-- Paramètres -->
+                <li>
+                    <a href="Parametres.php">
                         <i class="fas fa-cog"></i>
                         <span>Paramètres</span>
                     </a>
                 </li>
             </ul>
         </nav>
-        <main class="main-content">
-    <header>
-        <div class="header-content">
-            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
-            <div class="search-bar">
-                <input type="text" placeholder="Rechercher un département..." />
-                <i class="fas fa-search"></i>
-            </div>
-           
-        </div>
-    </header>
+        
+         <main class="main-content">
+            <header>
+                <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="user-profile">
+                    <img src="assets/images/user-avatar.jpg" alt="Profile" class="profile-img">
+                    <span>Admin</span>
+                </div>
+            </header>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2025 at 08:00 PM
+-- Generation Time: Jul 31, 2025 at 12:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -56,7 +56,6 @@ CREATE TABLE `departement` (
 --
 
 INSERT INTO `departement` (`id`, `nom`) VALUES
-(3, 'Departement Informatique'),
 (4, 'Departement Marketing');
 
 -- --------------------------------------------------------
@@ -73,6 +72,13 @@ CREATE TABLE `disponibiliteenseignant` (
   `id_enseignant` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `disponibiliteenseignant`
+--
+
+INSERT INTO `disponibiliteenseignant` (`id`, `jour`, `heure_debut`, `heure_fin`, `id_enseignant`) VALUES
+(6, 'Lundi', '08:30:00', '14:00:00', 8);
+
 -- --------------------------------------------------------
 
 --
@@ -88,6 +94,13 @@ CREATE TABLE `enseignant` (
   `statut` text NOT NULL,
   `specialite` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `enseignant`
+--
+
+INSERT INTO `enseignant` (`id`, `nom`, `prenom`, `email`, `telephone`, `statut`, `specialite`) VALUES
+(8, 'Kalima', 'Josue', 'kalimajosue@gmail.com', '0994040345', 'Permanent', 'programmation');
 
 -- --------------------------------------------------------
 
@@ -136,8 +149,7 @@ CREATE TABLE `promotion` (
 --
 
 INSERT INTO `promotion` (`id`, `nom`, `id_section`, `annee_academique`) VALUES
-(2, 'G2', 16, '2025-2026'),
-(3, 'L3', 14, '2039-2040');
+(2, 'G2', 16, '2025-2026');
 
 -- --------------------------------------------------------
 
@@ -216,8 +228,18 @@ CREATE TABLE `suivre` (
 
 CREATE TABLE `typecours` (
   `id` int(11) NOT NULL,
-  `nom` varchar(100) DEFAULT NULL
+  `nom` varchar(100) DEFAULT NULL,
+  `Description` text NOT NULL,
+  `duree_par_seance` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `typecours`
+--
+
+INSERT INTO `typecours` (`id`, `nom`, `Description`, `duree_par_seance`) VALUES
+(21, 'yyuyuiyuiyiu', 'srtrerrerte', 2),
+(22, 'yyuyuiyuiyiu', 'srtrerrerte', 2);
 
 --
 -- Indexes for dumped tables
@@ -337,13 +359,13 @@ ALTER TABLE `departement`
 -- AUTO_INCREMENT for table `disponibiliteenseignant`
 --
 ALTER TABLE `disponibiliteenseignant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `enseignant`
 --
 ALTER TABLE `enseignant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `etudiant`
@@ -397,7 +419,7 @@ ALTER TABLE `suivre`
 -- AUTO_INCREMENT for table `typecours`
 --
 ALTER TABLE `typecours`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
